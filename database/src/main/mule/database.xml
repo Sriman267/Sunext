@@ -16,4 +16,9 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
 		<db:insert doc:name="Insert" doc:id="99923af6-049b-4377-9e0b-bc618b75495e" config-ref="Database_Config"/>
 		<db:select doc:name="Select" doc:id="dbfe4b1c-9ae4-4d51-9d0f-3819b39694fb" config-ref="Database_Config"/>
 	</flow>
+	<flow name="databaseFlow" doc:id="7a46c8bc-8f36-4fec-a608-5a3e2949c7d5" >
+		<http:listener doc:name="Listener" doc:id="9cd433c9-7c7b-4bd0-99ea-26b82d26d958" config-ref="HTTP_Listener_config" path="/data"/>
+		<db:insert doc:name="Insert" doc:id="99923af6-049b-4377-9e0b-bc618b75495e" config-ref="Database_Config"/>
+		<db:select doc:name="Select" doc:id="dbfe4b1c-9ae4-4d51-9d0f-3819b39694fb" config-ref="Database_Config"/>
+	</flow>
 </mule>
