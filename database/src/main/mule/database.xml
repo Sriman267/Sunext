@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f26521c0-6813-4b1d-bd87-617c73f9ca7c" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="333ad137-5955-4120-8156-499883586949" >
+		<db:oracle-connection host="localhost" user="system" password="orcl" serviceName="orcl" />
+	</db:config>
+	<flow name="databaseFlow" doc:id="7a46c8bc-8f36-4fec-a608-5a3e2949c7d5" >
+		<http:listener doc:name="Listener" doc:id="9cd433c9-7c7b-4bd0-99ea-26b82d26d958" config-ref="HTTP_Listener_config" path="/data"/>
+		<db:insert doc:name="Insert" doc:id="99923af6-049b-4377-9e0b-bc618b75495e" config-ref="Database_Config"/>
+		<db:select doc:name="Select" doc:id="dbfe4b1c-9ae4-4d51-9d0f-3819b39694fb" config-ref="Database_Config"/>
+	</flow>
+</mule>
